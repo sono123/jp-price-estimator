@@ -1,2 +1,23 @@
 <h1>Main#index</h1>
 <p>Find me in app/views/main/index.html.erb</p>
+
+<%= label_tag 'print_method' %>
+<%= select_tag 'print_method', options_for_select(print_methods) %>
+
+<br>
+<br>
+
+<%= label_tag 'ink_colors' %>
+<%= select_tag 'ink_colors', options_for_select(ink_colors) %>
+
+<br>
+<br>
+
+<%= label_tag 'bleeds' %>
+<%= select_tag 'bleeds', options_for_select(bleeds) %>
+
+
+
+
+
+
