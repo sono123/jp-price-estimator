@@ -1,57 +1,67 @@
 <h1>Main#index</h1>
 <p>Find me in app/views/main/index.html.erb</p>
 
-<%= label_tag 'print_method' %>
-<%= select_tag 'print_method', options_for_select(print_methods) %>
+<%= form_tag('/search', :method => "get") do %>
 
-<br>
-<br>
-
-<%= label_tag 'ink_colors' %>
-<%= select_tag 'ink_colors', options_for_select(ink_colors) %>
-
-<br>
-<br>
-
-<%= label_tag 'bleeds' %>
-<%= select_tag 'bleeds', options_for_select(bleeds) %>
+	<%= label_tag 'print_method' %>
+	<%= select_tag 'print_method', options_for_select(print_methods) %>
 
 
-<br>
-<br>
+	<br>
+	<br>
 
-<%= label_tag 'raised_inks' %>
-<%= select_tag 'raised_inks', options_for_select(raised_inks) %>
-
-
-<br>
-<br>
-
-<%= label_tag 'dimensions' %>
-<%= select_tag 'dimensions', options_for_select(dimensions) %>
+	<%= label_tag 'ink_colors' %>
+	<%= select_tag 'ink_colors', options_for_select(ink_colors) %>
 
 
-<br>
-<br>
+	<br>
+	<br>
 
-<%= label_tag 'paper_types' %>
-<%= select_tag 'paper_types', options_for_select(paper_types) %>
-
-
-<br>
-<br>
-
-<%= label_tag 'coatings' %>
-<%= select_tag 'coatings', options_for_select(coatings) %>
+	<%= label_tag 'bleeds' %>
+	<%= select_tag 'bleeds', options_for_select(bleeds) %>
 
 
-<br>
-<br>
+	<br>
+	<br>
 
-<%= label_tag 'quantities' %>
-<%= select_tag 'quantities', options_for_select(quantities) %>
+	<%= label_tag 'raised_inks' %>
+	<%= select_tag 'raised_inks', options_for_select(raised_inks) %>
 
 
+	<br>
+	<br>
+
+	<%= label_tag 'dimensions' %>
+	<%= select_tag 'dimensions', options_for_select(dimensions) %>
+
+
+	<br>
+	<br>
+
+	<%= label_tag 'paper_types' %>
+	<%= select_tag 'paper_types', options_for_select(paper_types) %>
+
+
+	<br>
+	<br>
+
+	<%= label_tag 'coatings' %>
+	<%= select_tag 'coatings', options_for_select(coatings) %>
+
+
+	<br>
+	<br>
+
+	<%= label_tag 'quantities' %>
+	<%= select_tag 'quantities', options_for_select(quantities) %>
+
+
+	<br>
+	<br>
+
+	<%= submit_tag 'Submit' %>
+
+<% end %>
 
 
 

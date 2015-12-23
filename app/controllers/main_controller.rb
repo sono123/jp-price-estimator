@@ -9,4 +9,9 @@ class MainController < ApplicationController
   	@coatings = Coating.all
   	@quantities = Quantity.all
   end
+
+  def search
+  	@result = BusinessCard.search(params)
+  	redirect_to root_path
+  end
 end
