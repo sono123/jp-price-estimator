@@ -67,11 +67,7 @@
 		<br>
 		<br>
 
-		<span>Price: </span>
-
-		<% if @result %>
-			<%= @result["price"] %>
-		<% end %>
+		<span>Price: <span class="price"></span></span>
 
 	<% end %>
 
@@ -79,15 +75,10 @@
 
 
 
-<br>
-<br>
-<br>
-<br>
 
 
 
-
-<div class="new-bc-form">
+<div class="new-bc-form hide">
 	<h1>Enter New Business Card</h1>
 
 	<%= form_for(@business_card, url:{action: 'create'}) do |b| %>

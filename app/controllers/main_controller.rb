@@ -15,15 +15,11 @@ class MainController < ApplicationController
   def search
   	search = BusinessCard.search(params)
   	@result = search[0]
-  	@price = @result.price.to_s
   	if @result
-  		puts "*************@RESULT IN CONTROLLER **************"
-  		p @result.price
-  		puts "***************************"
-  		flash[:result] = @result
-  		# redirect_to root_path # with ajax eventually
+	  	@price = @result.price.to_s
   	else
   		# use ajax to alter the form HTML without deleting the values
+  		render :template => 'main/new_bc'
   	end
   end
 

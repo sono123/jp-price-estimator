@@ -1,2 +1,2 @@
-$('.search-form').append("<p><%= j @price %></p>");
-console.log("reached javascript");
+$('.price').replaceWith("<%= j @price %>");
+console.log("<%= j @price %>");
