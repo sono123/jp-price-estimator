@@ -1,5 +1,6 @@
 class MainController < ApplicationController
   def index
+  	@result = flash[:result]
   	@business_card = BusinessCard.new
   	@print_methods = PrintMethod.all
   	@ink_colors = InkColor.all
@@ -12,9 +13,15 @@ class MainController < ApplicationController
   end
 
   def search
-  	@result = BusinessCard.search(params)
+  	search = BusinessCard.search(params)
+  	@result = search[0]
+  	@price = @result.price.to_s
   	if @result
-  		redirect_to root_path # with ajax eventually
+  		puts "*************@RESULT IN CONTROLLER **************"
+  		p @result.price
+  		puts "***************************"
+  		flash[:result] = @result
+  		# redirect_to root_path # with ajax eventually
   	else
   		# use ajax to alter the form HTML without deleting the values
   	end

@@ -9,14 +9,21 @@ class BusinessCard < ActiveRecord::Base
   belongs_to :quantity
 
   def self.search(q)
-  	where(print_method_id: q[:print_method], 
-  				ink_color_id: q[:ink_color], 
-  				bleed_id: q[:bleed], 
-  				raised_ink_id: q[:raised_ink],
-  				dimension_id: q[:dimension],
-  				paper_type_id: q[:paper_type],
-  				coating_id: q[:coating],
-  				quantity_id: q[:quantity]
-  				)
+  	puts "REACHED BUSINESS-CARD SEARCH CLASS METHOD"
+  	result = where("print_method_id = ? AND ink_color_id = ? AND bleed_id = ? AND raised_ink_id = ? AND dimension_id = ? AND paper_type_id = ? AND coating_id = ? AND quantity_id = ?", q['print_method_id'], q['ink_color_id'], q['bleed_id'], q['raised_ink_id'], q['dimension_id'], q['paper_type_id'], q['coating_id'], q['quantity_id'])
+  	result
   end
 end
+
+
+
+
+
+# print_method_id: q['print_method_id'], 
+# ink_color_id: q['ink_color_id'], 
+# bleed_id: q['bleed_id'], 
+# raised_ink_id: q['raised_ink_id'],
+# dimension_id: q['dimension_id'],
+# paper_type_id: q['paper_type_id'],
+# coating_id: q['coating_id'],
+# quantity_id: q['quantity_id']

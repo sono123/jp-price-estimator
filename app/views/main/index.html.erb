@@ -1,102 +1,172 @@
 
 
+<div class="search-form">
+	<h1>Search</h1>
+
+	<%= form_tag('/search', :method => "get", :remote => true, :class => "search") do %>
+
+		<%= label_tag 'print_method' %>
+		<%= select_tag 'print_method_id', options_for_select(print_methods) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'ink_colors' %>
+		<%= select_tag 'ink_color_id', options_for_select(ink_colors) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'bleeds' %>
+		<%= select_tag 'bleed_id', options_for_select(bleeds) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'raised_inks' %>
+		<%= select_tag 'raised_ink_id', options_for_select(raised_inks) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'dimensions' %>
+		<%= select_tag 'dimension_id', options_for_select(dimensions) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'paper_types' %>
+		<%= select_tag 'paper_type_id', options_for_select(paper_types) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'coatings' %>
+		<%= select_tag 'coating_id', options_for_select(coatings) %>
+
+
+		<br>
+		<br>
+
+		<%= label_tag 'quantities' %>
+		<%= select_tag 'quantity_id', options_for_select(quantities) %>
+
+
+		<br>
+		<br>
+
+		<%= submit_tag 'Search' %>
+
+
+		<br>
+		<br>
+
+		<span>Price: </span>
+
+		<% if @result %>
+			<%= @result["price"] %>
+		<% end %>
+
+	<% end %>
+
+</div>
+
+
+
+<br>
+<br>
 <br>
 <br>
 
-<%= form_for(@business_card, url:{action: 'create'}) do %>
-
-	<%= label_tag 'print_method' %>
-	<%= select_tag 'print_method', options_for_select(print_methods) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'ink_colors' %>
-	<%= select_tag 'ink_colors', options_for_select(ink_colors) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'bleeds' %>
-	<%= select_tag 'bleeds', options_for_select(bleeds) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'raised_inks' %>
-	<%= select_tag 'raised_inks', options_for_select(raised_inks) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'dimensions' %>
-	<%= select_tag 'dimensions', options_for_select(dimensions) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'paper_types' %>
-	<%= select_tag 'paper_types', options_for_select(paper_types) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'coatings' %>
-	<%= select_tag 'coatings', options_for_select(coatings) %>
-
-
-	<br>
-	<br>
-
-	<%= label_tag 'quantities' %>
-	<%= select_tag 'quantities', options_for_select(quantities) %>
-
-
-	<br>
-	<br>
-
-	<%= submit_tag 'Submit' %>
 
 
 
-	<br>
-	<br>
+<div class="new-bc-form">
+	<h1>Enter New Business Card</h1>
 
-	<% unless @result %>
-		<%= "That price is not in the system." %>
+	<%= form_for(@business_card, url:{action: 'create'}) do |b| %>
+
+		<%= b.label 'print_method' %>
+		<%= b.select 'print_method_id', options_for_select(print_methods) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'ink_colors' %>
+		<%= b.select 'ink_color_id', options_for_select(ink_colors) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'bleeds' %>
+		<%= b.select 'bleed_id', options_for_select(bleeds) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'raised_inks' %>
+		<%= b.select 'raised_ink_id', options_for_select(raised_inks) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'dimensions' %>
+		<%= b.select 'dimension_id', options_for_select(dimensions) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'paper_types' %>
+		<%= b.select 'paper_type_id', options_for_select(paper_types) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'coatings' %>
+		<%= b.select 'coating_id', options_for_select(coatings) %>
+
+
+		<br>
+		<br>
+
+		<%= b.label 'quantities' %>
+		<%= b.select 'quantity_id', options_for_select(quantities) %>
+
+
+		<br>
+		<br>
+
+		<% unless @result %>
+			<%= "That price is not in the system." %>
+		<% end %>
+
+
+		<br>
+		<br>
+
+		<span>Price: </span>
+
+		<%= b.text_field :price %>
+
+		<br>
+		<br>
+
+		<%= b.submit 'Submit' %>
+
 	<% end %>
 
-	<br>
-	<br>
-
-	<span>Price: </span>
-
-	<% unless @result %>
-		<input>
-	<% end %>
-
-	<% if @result %>
-		<%= @result.price %>
-	<% end %>
-
-<% end %>
-
-
-
-
-
-<!-- use find_or_create method. -->
-
-
-
-
-
-
+</div>
 
 
