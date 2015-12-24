@@ -1,7 +1,9 @@
-<h1>Main#index</h1>
-<p>Find me in app/views/main/index.html.erb</p>
 
-<%= form_tag('/search', :method => "get") do %>
+
+<br>
+<br>
+
+<%= form_for(@business_card, url:{action: 'create'}) do %>
 
 	<%= label_tag 'print_method' %>
 	<%= select_tag 'print_method', options_for_select(print_methods) %>
@@ -61,14 +63,35 @@
 
 	<%= submit_tag 'Submit' %>
 
+
+
+	<br>
+	<br>
+
+	<% unless @result %>
+		<%= "That price is not in the system." %>
+	<% end %>
+
+	<br>
+	<br>
+
+	<span>Price: </span>
+
+	<% unless @result %>
+		<input>
+	<% end %>
+
+	<% if @result %>
+		<%= @result.price %>
+	<% end %>
+
 <% end %>
 
 
 
 
 
-
-
+<!-- use find_or_create method. -->
 
 
 
