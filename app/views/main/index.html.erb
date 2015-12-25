@@ -1,4 +1,4 @@
-
+<div ng-controller="infoController">
 
 <div class="search-form">
 	<h1>Search</h1>
@@ -6,7 +6,7 @@
 	<%= form_tag('/search', :method => "get", :remote => true, :class => "search") do %>
 
 		<%= label_tag 'print_method' %>
-		<%= select_tag 'print_method_id', options_for_select(print_methods) %>
+		<%= select_tag 'print_method_id', options_for_select(print_methods), {"ng-model" => "data.print_method_id"} %>
 
 
 		<br>
@@ -82,18 +82,18 @@
 </div>
 
 
+<p>{{data}}</p>
 
 
 
-
-<div class="new-bc-form hide">
+<!-- <div class="new-bc-form hide"> -->
+<div class="new-bc-form">
 	<h1>Enter New Business Card</h1>
 
 	<%= form_for(@business_card, url:{action: 'create'}) do |b| %>
 
 		<%= b.label 'print_method' %>
-		<%= b.select 'print_method_id', options_for_select(print_methods) %>
-
+		<%= b.select 'print_method_id', options_for_select(print_methods), {}, {"ng-model" => "data.print_method_id"} %>
 
 		<br>
 		<br>
@@ -168,4 +168,4 @@
 
 </div>
 
-
+</div>

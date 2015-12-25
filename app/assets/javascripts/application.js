@@ -16,5 +16,20 @@
 //= require_tree .
 //= require angular
 
+(function(angular) {
+'use strict';
 
-angular.module("bcApp", []);
+angular.module("bcApp", [])
+	.controller('infoController', function($scope) {
+		$scope.data = {
+			print_method_id: "1",
+			ink_color_id: "1",
+			bleed_id: "1",
+			raised_ink_id: "1",
+			dimensions_id: "1",
+			paper_type_id: "1",
+			coating_id: "1",
+			quantity_id: "1"
+		};
+	});
+	})(window.angular);
