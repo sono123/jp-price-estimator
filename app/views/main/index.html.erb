@@ -13,49 +13,49 @@
 		<br>
 
 		<%= label_tag 'ink_colors' %>
-		<%= select_tag 'ink_color_id', options_for_select(ink_colors) %>
+		<%= select_tag 'ink_color_id', options_for_select(ink_colors), {"ng-model" => "data.ink_color_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'bleeds' %>
-		<%= select_tag 'bleed_id', options_for_select(bleeds) %>
+		<%= select_tag 'bleed_id', options_for_select(bleeds), {"ng-model" => "data.bleed_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'raised_inks' %>
-		<%= select_tag 'raised_ink_id', options_for_select(raised_inks) %>
+		<%= select_tag 'raised_ink_id', options_for_select(raised_inks), {"ng-model" => "data.raised_ink_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'dimensions' %>
-		<%= select_tag 'dimension_id', options_for_select(dimensions) %>
+		<%= select_tag 'dimension_id', options_for_select(dimensions), {"ng-model" => "data.dimensions_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'paper_types' %>
-		<%= select_tag 'paper_type_id', options_for_select(paper_types) %>
+		<%= select_tag 'paper_type_id', options_for_select(paper_types), {"ng-model" => "data.paper_type_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'coatings' %>
-		<%= select_tag 'coating_id', options_for_select(coatings) %>
+		<%= select_tag 'coating_id', options_for_select(coatings), {"ng-model" => "data.coating_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= label_tag 'quantities' %>
-		<%= select_tag 'quantity_id', options_for_select(quantities) %>
+		<%= select_tag 'quantity_id', options_for_select(quantities), {"ng-model" => "data.quantity_id"} %>
 
 
 		<br>
@@ -82,9 +82,6 @@
 </div>
 
 
-<p>{{data}}</p>
-
-
 
 <!-- <div class="new-bc-form hide"> -->
 <div class="new-bc-form">
@@ -99,49 +96,49 @@
 		<br>
 
 		<%= b.label 'ink_colors' %>
-		<%= b.select 'ink_color_id', options_for_select(ink_colors) %>
+		<%= b.select 'ink_color_id', options_for_select(ink_colors), {}, {"ng-model" => "data.ink_color_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'bleeds' %>
-		<%= b.select 'bleed_id', options_for_select(bleeds) %>
+		<%= b.select 'bleed_id', options_for_select(bleeds), {}, {"ng-model" => "data.bleed_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'raised_inks' %>
-		<%= b.select 'raised_ink_id', options_for_select(raised_inks) %>
+		<%= b.select 'raised_ink_id', options_for_select(raised_inks), {}, {"ng-model" => "data.raised_ink_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'dimensions' %>
-		<%= b.select 'dimension_id', options_for_select(dimensions) %>
+		<%= b.select 'dimension_id', options_for_select(dimensions), {}, {"ng-model" => "data.dimensions_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'paper_types' %>
-		<%= b.select 'paper_type_id', options_for_select(paper_types) %>
+		<%= b.select 'paper_type_id', options_for_select(paper_types), {}, {"ng-model" => "data.paper_type_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'coatings' %>
-		<%= b.select 'coating_id', options_for_select(coatings) %>
+		<%= b.select 'coating_id', options_for_select(coatings), {}, {"ng-model" => "data.coating_id"} %>
 
 
 		<br>
 		<br>
 
 		<%= b.label 'quantities' %>
-		<%= b.select 'quantity_id', options_for_select(quantities) %>
+		<%= b.select 'quantity_id', options_for_select(quantities), {}, {"ng-model" => "data.quantity_id"} %>
 
 
 		<br>
