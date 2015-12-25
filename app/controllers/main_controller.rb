@@ -18,14 +18,21 @@ class MainController < ApplicationController
   	if @result
 	  	@price = @result.price.to_s
   	else
-  		# use ajax to alter the form HTML without deleting the values
   		render :template => 'main/new_bc'
   	end
   end
 
   def create
-  	@business_card = BusinessCard.create(business_card_params)
-  	redirect_to root_path # with ajax eventually
+  	search = BusinessCard.search(params["business_card"])
+  	@result = search[0]
+  	if @result
+  		flash[:error] = "That item is already in the system."
+  		redirect_to root_path
+  	else
+	  	BusinessCard.create(business_card_params)
+	  	flash[:success] = "Price successfully added."
+	  	redirect_to root_path
+  	end
   end
 
   private
@@ -43,8 +50,6 @@ class MainController < ApplicationController
   end
 
 end
-
-
 
 
 

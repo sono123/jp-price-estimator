@@ -61,6 +61,14 @@
 		<br>
 		<br>
 
+		<% if flash[:error] %>
+		<p><%= flash[:error] %></p>
+		<% end %>
+
+		<% if flash[:success] %>
+		<p><%= flash[:success] %></p>
+		<% end %>
+
 		<%= submit_tag 'Search' %>
 
 
@@ -149,7 +157,7 @@
 
 		<span>Price: </span>
 
-		<%= b.text_field :price %>
+		<%= b.text_field :price, class: "new-bc-price", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
 
 		<br>
 		<br>
