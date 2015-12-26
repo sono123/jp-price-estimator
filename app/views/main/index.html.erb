@@ -86,7 +86,7 @@
 <div class="new-bc-form hide">
 	<h1>Enter New Business Card</h1>
 
-	<%= form_for(@business_card, url:{action: 'create'}) do |b| %>
+	<%= form_for(@business_card, :url => business_cards_path, :html => {method: :post}) do |b| %>
 
 		<%= b.label 'print_method' %>
 		<%= b.select 'print_method_id', options_for_select(print_methods), {}, {"ng-model" => "data.print_method_id"} %>
