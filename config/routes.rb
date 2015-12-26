@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get '/search' => 'main#search'
   post '/business_cards' => 'business_cards#create'
+  get '/business_cards/:id/edit' => 'business_cards#edit'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

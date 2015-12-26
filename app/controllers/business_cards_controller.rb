@@ -14,6 +14,7 @@ class BusinessCardsController < ApplicationController
   end
 
   def edit
+  	@business_card = BusinessCard.find(params[:id])
   end
 
   private

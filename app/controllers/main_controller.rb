@@ -14,9 +14,10 @@ class MainController < ApplicationController
 
   def search
   	search = BusinessCard.search(params)
-  	@result = search[0]
-  	if @result
-	  	@price = @result.price.to_s
+  	result = search[0]
+  	if result
+	  	@price = result.price.to_s
+	  	@id = result.id.to_s
   	else
   		render :template => 'main/new_bc'
   	end
