@@ -17,6 +17,13 @@ class BusinessCardsController < ApplicationController
   	@business_card = BusinessCard.find(params[:id])
   end
 
+  def update
+    @business_card = BusinessCard.find(params[:id])
+    @business_card.update_attributes("price" => params[:business_card][:price])
+    flash[:success] = "Price successfully updated."
+    redirect_to root_path
+  end
+
   private
 
   def business_card_params

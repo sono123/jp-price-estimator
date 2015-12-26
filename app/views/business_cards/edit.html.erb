@@ -1,1 +1,15 @@
 <h1>Edit Business Card: <%= @business_card.id %></h1>
+
+
+<%= form_for(@business_card, :url => "/business_cards/#{@business_card.id}", :html => {method: :patch}) do |b| %>
+	<%= b.text_field :price, class: "edit-bc-price", value: "#{@business_card.price}", onfocus: "if (this.value=='#{@business_card.price}') this.value='';", onblur: "if (this.value=='') this.value='#{@business_card.price}';" %>
+	<%= b.submit 'Submit' %>
+<% end %>
+
+
+
+
+
+
+
+
