@@ -35,6 +35,7 @@
 
 		<%= label_tag 'dimensions' %>
 		<%= select_tag 'dimension_id', options_for_select(dimensions), {"ng-model" => "data.dimensions_id"} %>
+		<a href="/dimensions">Edit</a>
 
 
 		<br>
@@ -42,6 +43,7 @@
 
 		<%= label_tag 'paper_types' %>
 		<%= select_tag 'paper_type_id', options_for_select(paper_types), {"ng-model" => "data.paper_type_id"} %>
+		<a href="/paper_types">Edit</a>
 
 
 		<br>
@@ -49,6 +51,7 @@
 
 		<%= label_tag 'coatings' %>
 		<%= select_tag 'coating_id', options_for_select(coatings), {"ng-model" => "data.coating_id"} %>
+		<a href="/coatings">Edit</a>
 
 
 		<br>
@@ -56,6 +59,7 @@
 
 		<%= label_tag 'quantities' %>
 		<%= select_tag 'quantity_id', options_for_select(quantities), {"ng-model" => "data.quantity_id"} %>
+		<a href="/quantities">Edit</a>
 
 
 		<br>
@@ -116,6 +120,7 @@
 
 		<%= b.label 'dimensions' %>
 		<%= b.select 'dimension_id', options_for_select(dimensions), {}, {"ng-model" => "data.dimensions_id"} %>
+		<a href="/dimensions">Edit</a>
 
 
 		<br>
@@ -123,6 +128,7 @@
 
 		<%= b.label 'paper_types' %>
 		<%= b.select 'paper_type_id', options_for_select(paper_types), {}, {"ng-model" => "data.paper_type_id"} %>
+		<a href="/paper_types">Edit</a>
 
 
 		<br>
@@ -130,6 +136,7 @@
 
 		<%= b.label 'coatings' %>
 		<%= b.select 'coating_id', options_for_select(coatings), {}, {"ng-model" => "data.coating_id"} %>
+		<a href="/coatings">Edit</a>
 
 
 		<br>
@@ -137,6 +144,7 @@
 
 		<%= b.label 'quantities' %>
 		<%= b.select 'quantity_id', options_for_select(quantities), {}, {"ng-model" => "data.quantity_id"} %>
+		<a href="/quantities">Edit</a>
 
 
 		<br>
