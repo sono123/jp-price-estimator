@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch '/business_cards/:id' => 'business_cards#update'
 
   resources :dimensions
+  resources :paper_types
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
