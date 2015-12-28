@@ -1,165 +1,140 @@
 <div ng-controller="infoController">
 
-<div class="search-form">
-		<h1 class="text-center">Search</h1>
+	<div class="search-form">
+			<h1 class="text-center">Search</h1>
 
-	<%= form_tag('/search', :method => "get", :remote => true, :class => "search") do %>
+		<%= form_tag('/search', :method => "get", :remote => true, :class => "search") do %>
 
-		<div class="form-group">
-			<%= label_tag 'print_method' %>
-			<%= select_tag 'print_method_id', options_for_select(print_methods), {"ng-model" => "data.print_method_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'print_method' %>
+				<%= select_tag 'print_method_id', options_for_select(print_methods), {"ng-model" => "data.print_method_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'ink_colors' %>
-			<%= select_tag 'ink_color_id', options_for_select(ink_colors), {"ng-model" => "data.ink_color_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'ink_colors' %>
+				<%= select_tag 'ink_color_id', options_for_select(ink_colors), {"ng-model" => "data.ink_color_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'bleeds' %>
-			<%= select_tag 'bleed_id', options_for_select(bleeds), {"ng-model" => "data.bleed_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'bleeds' %>
+				<%= select_tag 'bleed_id', options_for_select(bleeds), {"ng-model" => "data.bleed_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'raised_inks' %>
-			<%= select_tag 'raised_ink_id', options_for_select(raised_inks), {"ng-model" => "data.raised_ink_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'raised_inks' %>
+				<%= select_tag 'raised_ink_id', options_for_select(raised_inks), {"ng-model" => "data.raised_ink_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'dimensions' %><a class="edit-menu" href="/dimensions">Edit</a>
-			<%= select_tag 'dimension_id', options_for_select(dimensions), {"ng-model" => "data.dimensions_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'dimensions' %><a class="edit-menu" href="/dimensions">Edit</a>
+				<%= select_tag 'dimension_id', options_for_select(dimensions), {"ng-model" => "data.dimensions_id", "class" => "form-control"} %>
+			</div>
 
+			<div class="form-group">
+				<%= label_tag 'paper_types' %><a class="edit-menu" href="/paper_types">Edit</a>
+				<%= select_tag 'paper_type_id', options_for_select(paper_types), {"ng-model" => "data.paper_type_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'paper_types' %><a class="edit-menu" href="/paper_types">Edit</a>
-			<%= select_tag 'paper_type_id', options_for_select(paper_types), {"ng-model" => "data.paper_type_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'coatings' %><a class="edit-menu" href="/coatings">Edit</a>
+				<%= select_tag 'coating_id', options_for_select(coatings), {"ng-model" => "data.coating_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'coatings' %><a class="edit-menu" href="/coatings">Edit</a>
-			<%= select_tag 'coating_id', options_for_select(coatings), {"ng-model" => "data.coating_id", "class" => "form-control"} %>
-		</div>
+			<div class="form-group">
+				<%= label_tag 'quantities' %><a class="edit-menu" href="/quantities">Edit</a>
+				<%= select_tag 'quantity_id', options_for_select(quantities), {"ng-model" => "data.quantity_id", "class" => "form-control"} %>
+			</div>
 
-		<div class="form-group">
-			<%= label_tag 'quantities' %><a class="edit-menu" href="/quantities">Edit</a>
-			<%= select_tag 'quantity_id', options_for_select(quantities), {"ng-model" => "data.quantity_id", "class" => "form-control"} %>
-		</div>
+			<br>
 
-		<br>
+			<% if flash[:error] %>
+				<p><%= flash[:error] %></p>
+			<% elsif flash[:success] %>
+				<p><%= flash[:success] %></p>
+			<% end %>
 
-		<% if flash[:error] %>
-			<p><%= flash[:error] %></p>
-		<% elsif flash[:success] %>
-			<p><%= flash[:success] %></p>
+			<%= submit_tag 'Search', class: "btn btn-primary btn-block" %>
+
+			<br>
+
+			<h3>Price: <span class="price"></span></h3>
+
+			<h3>Cost: <span class="cost"></span></h3>
+
 		<% end %>
 
-		<%= submit_tag 'Search', class: "btn btn-primary btn-block" %>
-
-		<br>
-
-		<h3>Price: <span class="price"></span></h3>
-
-		<h3>Cost: <span class="cost"></span></h3>
-
-	<% end %>
-
-</div>
+	</div>
 
 
 
-<div class="new-bc-form hide">
-	<h1>Enter New Business Card</h1>
+	<div class="new-bc-form hide">
+		<h1 class="text-center">Enter New BC</h1>
 
-	<%= form_for(@business_card, :url => business_cards_path, :html => {method: :post}) do |b| %>
+		<%= form_for(@business_card, :url => business_cards_path, :html => {method: :post}) do |b| %>
 
-		<%= b.label 'print_method' %>
-		<%= b.select 'print_method_id', options_for_select(print_methods), {}, {"ng-model" => "data.print_method_id"} %>
+			<div class="form-group">
+				<%= b.label 'print_method' %>
+				<%= b.select 'print_method_id', options_for_select(print_methods), {}, {"ng-model" => "data.print_method_id", "class" => "form-control"} %>
+			</div>
 
-		<br>
-		<br>
+			<div class="form-group">
+				<%= b.label 'ink_colors' %>
+				<%= b.select 'ink_color_id', options_for_select(ink_colors), {}, {"ng-model" => "data.ink_color_id", "class" => "form-control"} %>
+			</div>
 
-		<%= b.label 'ink_colors' %>
-		<%= b.select 'ink_color_id', options_for_select(ink_colors), {}, {"ng-model" => "data.ink_color_id"} %>
+			<div class="form-group">
+				<%= b.label 'bleeds' %>
+				<%= b.select 'bleed_id', options_for_select(bleeds), {}, {"ng-model" => "data.bleed_id", "class" => "form-control"} %>
+			</div>
 
+			<div class="form-group">
+				<%= b.label 'raised_inks' %>
+				<%= b.select 'raised_ink_id', options_for_select(raised_inks), {}, {"ng-model" => "data.raised_ink_id", "class" => "form-control"} %>
+			</div>
 
-		<br>
-		<br>
+			<div class="form-group">
+				<%= b.label 'dimensions' %><a class="edit-menu" href="/dimensions">Edit</a>
+				<%= b.select 'dimension_id', options_for_select(dimensions), {}, {"ng-model" => "data.dimensions_id", "class" => "form-control"} %>
+			</div>
 
-		<%= b.label 'bleeds' %>
-		<%= b.select 'bleed_id', options_for_select(bleeds), {}, {"ng-model" => "data.bleed_id"} %>
+			<div class="form-group">
+				<%= b.label 'paper_types' %><a class="edit-menu" href="/paper_types">Edit</a>
+				<%= b.select 'paper_type_id', options_for_select(paper_types), {}, {"ng-model" => "data.paper_type_id", "class" => "form-control"} %>
+			</div>
 
+			<div class="form-group">
+				<%= b.label 'coatings' %><a class="edit-menu" href="/coatings">Edit</a>
+				<%= b.select 'coating_id', options_for_select(coatings), {}, {"ng-model" => "data.coating_id", "class" => "form-control"} %>
+			</div>
 
-		<br>
-		<br>
+			<div class="form-group">
+				<%= b.label 'quantities' %><a class="edit-menu" href="/quantities">Edit</a>
+				<%= b.select 'quantity_id', options_for_select(quantities), {}, {"ng-model" => "data.quantity_id", "class" => "form-control"} %>
+			</div>
 
-		<%= b.label 'raised_inks' %>
-		<%= b.select 'raised_ink_id', options_for_select(raised_inks), {}, {"ng-model" => "data.raised_ink_id"} %>
+			<br>
 
+			<% unless @result %>
+				<p><%= "That price is not in the system." %></p>
+			<% end %>
 
-		<br>
-		<br>
+			<br>
 
-		<%= b.label 'dimensions' %>
-		<%= b.select 'dimension_id', options_for_select(dimensions), {}, {"ng-model" => "data.dimensions_id"} %>
-		<a href="/dimensions">Edit</a>
+			<%= b.label 'price' %>
+			<%= b.text_field :price, class: "new-bc-price form-control", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
 
+			<%= b.label 'cost' %>
+			<%= b.text_field :cost, class: "new-bc-cost form-control", value: "Add Cost", onfocus: "if (this.value=='Add Cost') this.value='';", onblur: "if (this.value=='') this.value='Add Cost';" %>
 
-		<br>
-		<br>
+			<br>
 
-		<%= b.label 'paper_types' %>
-		<%= b.select 'paper_type_id', options_for_select(paper_types), {}, {"ng-model" => "data.paper_type_id"} %>
-		<a href="/paper_types">Edit</a>
+			<%= b.submit 'Submit', class: "btn btn-primary btn-block" %>
 
-
-		<br>
-		<br>
-
-		<%= b.label 'coatings' %>
-		<%= b.select 'coating_id', options_for_select(coatings), {}, {"ng-model" => "data.coating_id"} %>
-		<a href="/coatings">Edit</a>
-
-
-		<br>
-		<br>
-
-		<%= b.label 'quantities' %>
-		<%= b.select 'quantity_id', options_for_select(quantities), {}, {"ng-model" => "data.quantity_id"} %>
-		<a href="/quantities">Edit</a>
-
-
-		<br>
-		<br>
-
-		<% unless @result %>
-			<%= "That price is not in the system." %>
 		<% end %>
 
-
-		<br>
-		<br>
-
-		<span>Price: </span>
-
-		<%= b.text_field :price, class: "new-bc-price", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
-
-
-		<br>
-		<br>
-
-		<span>Cost: </span>
-
-		<%= b.text_field :cost, class: "new-bc-cost", value: "Add Cost", onfocus: "if (this.value=='Add Cost') this.value='';", onblur: "if (this.value=='') this.value='Add Cost';" %>
-
-
-		<br>
-		<br>
-
-		<%= b.submit 'Submit' %>
-
-	<% end %>
+	</div>
 
 </div>
 
-</div>
+<br>
+<br>
