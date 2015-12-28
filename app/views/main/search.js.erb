@@ -1,3 +1,3 @@
-$('.price').replaceWith("<span class='price'><%= j @price %> <a href='/business_cards/<%= j @id %>/edit'>edit</a></span>");
-$('.cost').replaceWith("<span class='cost'><%= j @cost %> <a href='/business_cards/<%= j @id %>/edit'>edit</a></span>");
+$('.price').replaceWith("<span class='price'>$<%= j @price %> <a class='edit-price'href='/business_cards/<%= j @id %>/edit'>edit</a></span>");
+$('.cost').replaceWith("<span class='cost'>$<%= j @cost %> <a class='edit-price'href='/business_cards/<%= j @id %>/edit'>edit</a></span>");
 console.log("<%= j @price %>");

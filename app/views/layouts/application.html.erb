@@ -4,13 +4,22 @@
   <title>JpPriceEstimator</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="bcApp">
 
-<%= link_to "Home", root_path %>
+	<div class="container-fluid">
+		<div class="main-content col-sm-4 col-sm-offset-4">
 
-<%= yield %>
+		<div class="logo-div col-sm-12">
+			<%= link_to image_tag("logo_large.png", class: "logo center-block"), root_path %>
+		</div>
+
+		<%= yield %>
+
+		</div>
+	</div>
 
 </body>
 </html>

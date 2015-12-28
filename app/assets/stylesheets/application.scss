@@ -22,3 +22,21 @@
 .hide {
 	display: none;
 }
+
+.edit-menu {
+	margin-left: 5px;
+	color: rgba(0,0,0,.25);
+}
+
+.edit-menu:hover, .edit-price:hover {
+	text-decoration: none;
+}
+
+.edit-price {
+	color: rgba(0,0,0,.25);
+	font-size: .6em;
+}
+
+.cost, .price {
+	color: #337ab7;
+}
