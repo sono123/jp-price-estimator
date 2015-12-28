@@ -17,6 +17,7 @@ class MainController < ApplicationController
   	result = search[0]
   	if result
 	  	@price = result.price.to_s
+      @cost = result.cost.to_s
 	  	@id = result.id.to_s
   	else
   		render :template => 'main/new_bc'

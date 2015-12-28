@@ -80,6 +80,11 @@
 
 		<span>Price: <span class="price"></span></span>
 
+		<br>
+		<br>
+
+		<span>Cost: <span class="cost"></span></span>
+
 	<% end %>
 
 </div>
@@ -161,6 +166,15 @@
 		<span>Price: </span>
 
 		<%= b.text_field :price, class: "new-bc-price", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
+
+
+		<br>
+		<br>
+
+		<span>Cost: </span>
+
+		<%= b.text_field :cost, class: "new-bc-cost", value: "Add Cost", onfocus: "if (this.value=='Add Cost') this.value='';", onblur: "if (this.value=='') this.value='Add Cost';" %>
+
 
 		<br>
 		<br>

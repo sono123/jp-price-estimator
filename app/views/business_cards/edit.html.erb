@@ -3,6 +3,7 @@
 
 <%= form_for(@business_card, :url => "/business_cards/#{@business_card.id}", :html => {method: :patch}) do |b| %>
 	<%= b.text_field :price, class: "edit-bc-price", value: "#{@business_card.price}", onfocus: "if (this.value=='#{@business_card.price}') this.value='';", onblur: "if (this.value=='') this.value='#{@business_card.price}';" %>
+	<%= b.text_field :cost, class: "edit-bc-cost", value: "#{@business_card.cost}", onfocus: "if (this.value=='#{@business_card.cost}') this.value='';", onblur: "if (this.value=='') this.value='#{@business_card.cost}';" %>
 	<%= b.submit 'Submit' %>
 <% end %>
 
