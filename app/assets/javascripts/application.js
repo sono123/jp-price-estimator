@@ -21,7 +21,7 @@
 'use strict';
 
 angular.module("bcApp", [])
-	.controller('infoController', function($scope) {
+	.controller('infoController', ['$scope', function($scope) {
 		$scope.data = {
 			print_method_id: "1",
 			ink_color_id: "1",
@@ -32,5 +32,5 @@ angular.module("bcApp", [])
 			coating_id: "1",
 			quantity_id: "1"
 		};
-	});
+	}]);
 	})(window.angular);
