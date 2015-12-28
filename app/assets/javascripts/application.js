@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require angular
+//= require bootstrap-sprockets
 
 (function(angular) {
 'use strict';
