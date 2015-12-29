@@ -13,13 +13,13 @@
 
   <div class="field form-group">
     <%= f.label :width %><br>
-    <%= f.text_field :width, :class => "form-control" %>
+    <%= f.text_field :width, class: "form-control" %>
   </div>
   <div class="field form-group">
     <%= f.label :height %><br>
-    <%= f.text_field :height, :class => "form-control" %>
+    <%= f.text_field :height, class: "form-control" %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: "btn btn-primary btn-block" %>
   </div>
 <% end %>

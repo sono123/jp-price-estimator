@@ -28,7 +28,7 @@ class DimensionsController < ApplicationController
 
     respond_to do |format|
       if @dimension.save
-        format.html { redirect_to @dimension, notice: 'Dimension was successfully created.' }
+        format.html { redirect_to dimensions_path, notice: 'Dimension was successfully created.' }
         format.json { render :show, status: :created, location: @dimension }
       else
         format.html { render :new }
