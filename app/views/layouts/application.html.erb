@@ -8,18 +8,15 @@
   <%= csrf_meta_tags %>
 </head>
 <body ng-app="bcApp">
-
 	<div class="container-fluid">
 		<div class="main-content col-sm-4 col-sm-offset-4">
+			<div class="logo-div col-sm-12">
+				<%= link_to image_tag("logo_large.png", class: "logo center-block"), root_path %>
+			</div>
 
-		<div class="logo-div col-sm-12">
-			<%= link_to image_tag("logo_large.png", class: "logo center-block"), root_path %>
-		</div>
-
-		<%= yield %>
-
+			<%= yield %>
+			
 		</div>
 	</div>
-
 </body>
 </html>

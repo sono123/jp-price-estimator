@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Dimensions</h1>
+<h1 class="text-center">Listing Dimensions</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Width</th>
@@ -14,9 +14,8 @@
   <tbody>
     <% @dimensions.each do |dimension| %>
       <tr>
-        <td><%= dimension.width %></td>
-        <td><%= dimension.height %></td>
-        <td><%= link_to 'Show', dimension %></td>
+        <td><%= trim(dimension.width) %></td>
+        <td><%= trim(dimension.height) %></td>
         <td><%= link_to 'Edit', edit_dimension_path(dimension) %></td>
         <td><%= link_to 'Destroy', dimension, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,6 +23,4 @@
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Dimension', new_dimension_path %>
+<%= link_to 'Add New Dimension', new_dimension_path, class: "btn btn-primary btn-block" %>
