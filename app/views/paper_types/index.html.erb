@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Paper Types</h1>
+<h1 class="text-center">Listing Paper Types</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Brand</th>
@@ -20,7 +20,6 @@
         <td><%= paper_type.name %></td>
         <td><%= paper_type.color %></td>
         <td><%= paper_type.thickness %></td>
-        <td><%= link_to 'Show', paper_type %></td>
         <td><%= link_to 'Edit', edit_paper_type_path(paper_type) %></td>
         <td><%= link_to 'Destroy', paper_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -30,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Paper type', new_paper_type_path %>
+<%= link_to 'Add New Paper type', new_paper_type_path, class: "btn btn-primary btn-block" %>
