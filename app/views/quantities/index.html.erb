@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Quantities</h1>
+<h1 class="text-center">Listing Quantities</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Quantity</th>
@@ -14,7 +14,6 @@
     <% @quantities.each do |quantity| %>
       <tr>
         <td><%= quantity.quantity %></td>
-        <td><%= link_to 'Show', quantity %></td>
         <td><%= link_to 'Edit', edit_quantity_path(quantity) %></td>
         <td><%= link_to 'Destroy', quantity, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Quantity', new_quantity_path %>
+<%= link_to 'New Quantity', new_quantity_path, class: "btn btn-primary btn-block" %>
