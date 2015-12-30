@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
   devise_for :users
-  root 'main#index'
+  root 'welcome#index'
+  get 'welcome/index' => 'welcome#index'
+
   get 'main/index' => 'main#index'
 
   get '/search' => 'main#search'

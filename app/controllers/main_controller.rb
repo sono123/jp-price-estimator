@@ -1,5 +1,8 @@
 class MainController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
+
   	@result = flash[:result]
   	@business_card = BusinessCard.new
   	@print_methods = PrintMethod.all
