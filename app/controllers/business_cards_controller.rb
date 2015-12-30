@@ -3,7 +3,6 @@ class BusinessCardsController < ApplicationController
   def create
 		search = BusinessCard.search(params["business_card"])
 		@result = search[0]
-    # Can I use a validation to do this???
 		if @result
 			flash[:error] = "That item is already in the system."
 			redirect_to root_path
