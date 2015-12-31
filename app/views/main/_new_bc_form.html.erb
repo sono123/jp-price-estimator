@@ -48,11 +48,15 @@
 
 	<br>
 
-	<%= b.label 'price' %>
-	<%= b.text_field :price, class: "new-bc-price form-control", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
+	<div class="form-group">
+		<%= b.label 'price' %>
+		<%= b.text_field :price, class: "new-bc-price form-control", value: "Add Price", onfocus: "if (this.value=='Add Price') this.value='';", onblur: "if (this.value=='') this.value='Add Price';" %>
+	</div>
 
-	<%= b.label 'cost' %>
-	<%= b.text_field :cost, class: "new-bc-cost form-control", value: "Add Cost", onfocus: "if (this.value=='Add Cost') this.value='';", onblur: "if (this.value=='') this.value='Add Cost';" %>
+	<div class="form-group">
+		<%= b.label 'cost' %>
+		<%= b.text_field :cost, class: "new-bc-cost form-control", value: "Add Cost", onfocus: "if (this.value=='Add Cost') this.value='';", onblur: "if (this.value=='') this.value='Add Cost';" %>
+	</div>
 
 	<br>
 

@@ -11,10 +11,6 @@
 	<div class="container-fluid">
 		<div class="main-content col-sm-4 col-sm-offset-4">
 
-			<% if user_signed_in? %>
-			<%= button_to 'logout',  destroy_user_session_path, method: :delete, class: "btn btn-default" %>
-			<% end %>
-
 			<div class="logo-div col-sm-12">
 				<%= link_to image_tag("logo_large.png", class: "logo center-block"), root_path %>
 			</div>
@@ -25,6 +21,14 @@
 			
 		</div>
 	</div>
-	<footer class="footer"></footer>
+	<footer class="footer">
+		<div class="container-fluid">
+			<div class="col-sm-4 col-sm-offset-4">
+				<% if user_signed_in? %>
+					<%= button_to 'logout',  destroy_user_session_path, method: :delete, class: "btn btn-default center-block logout" %>
+				<% end %>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>
