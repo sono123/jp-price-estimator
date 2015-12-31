@@ -65,6 +65,12 @@ module MainHelper
 			[i.quantity, i.id]
 		end
 	end
+
+	def box_counts
+		@box_counts.map do |i|
+			[i.box_count, i.id]
+		end
+	end
 end
 
 

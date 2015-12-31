@@ -40,6 +40,11 @@
 		<%= b.select 'quantity_id', options_for_select(quantities), {}, {"ng-model" => "data.quantity_id", "class" => "form-control"} %>
 	</div>
 
+	<div class="form-group">
+		<%= b.label 'box_counts' %><a class="edit-menu" href="/box_counts">Edit</a>
+		<%= b.select 'box_count_id', options_for_select(box_counts), {}, {"ng-model" => "data.box_count_id", "class" => "form-control"} %>
+	</div>
+
 	<br>
 
 	<% unless @result %>

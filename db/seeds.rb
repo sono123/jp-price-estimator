@@ -75,7 +75,11 @@ quantity_increments.each do |qty|
 end
 
 
-
+# Box Counts
+box_increments = (1..10).to_a
+box_increments.each do |qty|
+	BoxCount.create(box_count: qty)
+end
 
 
 

@@ -42,6 +42,11 @@
 		<td class="col-sm-1"><%= @business_card.quantity.quantity %></td>
 	</tr>
 
+	<tr>
+		<td class="col-sm-1"><strong><span>Box Count:</span></strong></td>
+		<td class="col-sm-1"><%= @business_card.box_count.box_count %></td>
+	</tr>
+
 </table>
 
 <%= form_for(@business_card, :url => "/business_cards/#{@business_card.id}", :html => {method: :patch}) do |b| %>

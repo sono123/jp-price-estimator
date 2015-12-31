@@ -1,8 +1,7 @@
 class MainController < ApplicationController
   before_action :authenticate_user!
-  
-  def index
 
+  def index
   	@result = flash[:result]
   	@business_card = BusinessCard.new
   	@print_methods = PrintMethod.all
@@ -13,6 +12,7 @@ class MainController < ApplicationController
   	@paper_types = PaperType.all
   	@coatings = Coating.all
   	@quantities = Quantity.all
+    @box_counts = BoxCount.all
   end
 
   def search

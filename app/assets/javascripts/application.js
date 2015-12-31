@@ -32,7 +32,8 @@ angular.module("bcApp", [])
 			dimensions_id: "1",
 			paper_type_id: "1",
 			coating_id: "1",
-			quantity_id: "1"
+			quantity_id: "1",
+			box_count_id: "1"
 		};
 	}]);
 	})(window.angular);
