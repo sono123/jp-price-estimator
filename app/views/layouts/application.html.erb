@@ -12,7 +12,7 @@
 		<div class="main-content col-sm-4 col-sm-offset-4">
 
 			<% if user_signed_in? %>
-			<%= link_to 'logout',  destroy_user_session_path, method: :delete %>
+			<%= button_to 'logout',  destroy_user_session_path, method: :delete, class: "btn btn-default" %>
 			<% end %>
 
 			<div class="logo-div col-sm-12">
@@ -25,5 +25,6 @@
 			
 		</div>
 	</div>
+	<footer class="footer"></footer>
 </body>
 </html>
