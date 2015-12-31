@@ -35,6 +35,7 @@ class BusinessCardsController < ApplicationController
   																				:paper_type_id, 
   																				:coating_id, 
   																				:quantity_id,
+                                          :box_count_id,
   																				:price,
                                           :cost)
   end

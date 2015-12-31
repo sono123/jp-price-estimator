@@ -1,8 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Box Counts</h1>
+<h1 class="text-center">Listing Box Counts</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Box count</th>
@@ -14,7 +14,6 @@
     <% @box_counts.each do |box_count| %>
       <tr>
         <td><%= box_count.box_count %></td>
-        <td><%= link_to 'Show', box_count %></td>
         <td><%= link_to 'Edit', edit_box_count_path(box_count) %></td>
         <td><%= link_to 'Destroy', box_count, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -24,4 +23,4 @@
 
 <br>
 
-<%= link_to 'New Box count', new_box_count_path %>
+<%= link_to 'New Box count', new_box_count_path, class: "btn btn-primary btn-block" %>
