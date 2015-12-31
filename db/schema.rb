@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231210520) do
+ActiveRecord::Schema.define(version: 20151231210730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,9 +42,11 @@ ActiveRecord::Schema.define(version: 20151231210520) do
     t.integer  "coating_id"
     t.integer  "quantity_id"
     t.integer  "cost"
+    t.integer  "box_count_id"
   end
 
   add_index "business_cards", ["bleed_id"], name: "index_business_cards_on_bleed_id", using: :btree
+  add_index "business_cards", ["box_count_id"], name: "index_business_cards_on_box_count_id", using: :btree
   add_index "business_cards", ["coating_id"], name: "index_business_cards_on_coating_id", using: :btree
   add_index "business_cards", ["dimension_id"], name: "index_business_cards_on_dimension_id", using: :btree
   add_index "business_cards", ["ink_color_id"], name: "index_business_cards_on_ink_color_id", using: :btree
@@ -121,6 +123,7 @@ ActiveRecord::Schema.define(version: 20151231210520) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "business_cards", "bleeds"
+  add_foreign_key "business_cards", "box_counts"
   add_foreign_key "business_cards", "coatings"
   add_foreign_key "business_cards", "dimensions"
   add_foreign_key "business_cards", "ink_colors"
