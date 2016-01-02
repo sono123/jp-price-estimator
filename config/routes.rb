@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  devise_for :users
+
   root 'welcome#index'
   get 'welcome/index' => 'welcome#index'
 
@@ -10,7 +12,6 @@ Rails.application.routes.draw do
   get '/business_cards/:id/edit' => 'business_cards#edit'
   patch '/business_cards/:id' => 'business_cards#update'
 
-  devise_for :users
   resources :box_counts
   resources :dimensions
   resources :paper_types

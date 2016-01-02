@@ -46,8 +46,12 @@ html {
 	font-size: .6em;
 }
 
-.cost, .price {
+.price, .margin {
 	color: #337ab7;
+}
+
+.cost, .overhead {
+	color: #ff6666;
 }
 
 .footer {
@@ -87,8 +91,15 @@ html {
 	margin-bottom: 20px;	
 }
 
+.margin-line {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	margin-top: 20px;
+}
 
-
+.price-info {
+	float: right;
+}
 
 
 

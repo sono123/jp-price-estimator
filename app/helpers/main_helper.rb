@@ -71,6 +71,19 @@ module MainHelper
 			[i.box_count, i.id]
 		end
 	end
+
+	def overhead
+		if @price.to_i < 120
+			"35"
+		else
+			"45"
+		end
+	end
+
+	def margin
+		@margin = @price.to_i - (@cost.to_i + overhead.to_i)
+		@margin.to_s
+	end
 end
 
 
