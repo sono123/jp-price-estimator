@@ -23,6 +23,7 @@ class MainController < ApplicationController
       @cost = result.cost.to_s
 	  	@id = result.id.to_s
   	else
+      # BusinessCard.similar_products(params)
   		render :template => 'main/new_bc'
   	end
   end
