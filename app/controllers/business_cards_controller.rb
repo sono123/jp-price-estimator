@@ -33,7 +33,12 @@ class BusinessCardsController < ApplicationController
       @id = result.id.to_s
       render :template => 'main/search'
     else
-      # @similar = BusinessCard.similar_products(params)
+      @similar = BusinessCard.similar_products(params)
+      
+      puts "*******************************"
+      p @similar
+      puts "*******************************"
+
       render :template => 'main/new_bc'
     end
   end

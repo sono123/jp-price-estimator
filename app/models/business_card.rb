@@ -15,12 +15,25 @@ class BusinessCard < ActiveRecord::Base
 
 
   def self.similar_products(target_params)
-    same_print_method = BusinessCard.where(print_method_id: target_params['print_method_id'])
-    target_bc = BusinessCard.find(target_params['id'])
+    same_print_method =  BusinessCard.where(print_method_id: target_params['print_method_id'])
+
+    target_ink_obj = InkColor.find(target_params['ink_color_id'])
+    target_bleed_obj = Bleed.find(target_params['bleed_id'])
+    target_raised_obj = RaisedInk.find(target_params['raised_ink_id'])
+    target_dimension_obj = Dimension.find(target_params['dimension_id'])
+    target_coating_obj = Coating.find(target_params['coating_id'])
+
+    target_bc = {"ink_color" => {"front" => "#{target_ink_obj.front}",   "back" => "#{target_ink_obj.back}"},
+                 "bleed"     => {"front" => "#{target_bleed_obj.front}", "back" => "#{target_bleed_obj.back}"},
+                 "raised_ink"     => {"front" => "#{target_raised_obj.front}", "back" => "#{target_raised_obj.back}"},
+                 "dimension"     => {"width" => "#{target_dimension_obj.width}", "height" => "#{target_dimension_obj.height}"},
+                 "coating"     => {"front" => "#{target_coating_obj.front}", "back" => "#{target_coating_obj.back}"}
+                  }
+
     business_card_scores = []
 
-    same_print_method_arr.each do |bc|
-      business_card_scores << [bc.id, generate_score(bc, target_bc)]
+    same_print_method.each do |bc|
+      business_card_scores << [bc.id, self.generate_score(bc, target_bc)]
     end
 
     results = business_card_scores.sort_by{ |bc| bc[1] }
@@ -31,7 +44,7 @@ class BusinessCard < ActiveRecord::Base
   private
 
 
-  def generate_score(bc, target)
+  def self.generate_score(bc, target)
     # if bc.print_method.print_method.downcase == "pantone offset"
     #   generate_pantone_offset_score(bc, target)
     # elsif bc.print_method.print_method.downcase == "cmyk offset"
@@ -44,13 +57,13 @@ class BusinessCard < ActiveRecord::Base
     generate_pantone_offset_score(bc, target)
   end
 
-  def generate_pantone_offset_score(bc, target)
+  def self.generate_pantone_offset_score(bc, target)
     score = []
-    score << pantone_ink_color_score(bc, target)
-    score << pantone_bleed_score(bc) if target.bleed.front == true || target.bleed.back == true
-    score << pantone_raised_ink_score(bc, target) if target.raised_ink.front > 0 || target.raised_ink.back > 0
-    score << pantone_dimension_score(bc, target)
-    score << pantone_coating_score(bc, target) if target.coating.front != "none" || target.coating.back != "none"
+    score << self.pantone_ink_color_score(bc, target)
+    score << self.pantone_bleed_score(bc) if target["bleed"]["front"] == "true" || target["bleed"]["back"] == "true"
+    score << self.pantone_raised_ink_score(bc, target) if target["raised_ink"]["front"].to_i > 0 || target["raised_ink"]["back"].to_i > 0
+    score << self.pantone_dimension_score(bc, target)
+    score << self.pantone_coating_score(bc, target) if target["coating"]["front"] != "none" || target["coating"]["back"] != "none"
     sum = score.inject(:+)
   end
 
@@ -63,9 +76,9 @@ class BusinessCard < ActiveRecord::Base
   def generate_digital_score(bc, target)
   end
 
-  def pantone_ink_color_score(b, t)
+  def self.pantone_ink_color_score(b, t)
     b_colors = b.ink_color.front + b.ink_color.back
-    t_colors = t.ink_color.front + t.ink_color.back
+    t_colors = t["ink_color"]["front"].to_i + t["ink_color"]["back"].to_i
     diff = nil
     pic_score = nil
 
@@ -91,7 +104,7 @@ class BusinessCard < ActiveRecord::Base
     pic_score
   end
 
-  def pantone_bleed_score(b)
+  def self.pantone_bleed_score(b)
     pb_score = 0
 
     if b.bleed.front == true || b.bleed.back == true
@@ -101,9 +114,9 @@ class BusinessCard < ActiveRecord::Base
     end
   end
 
-  def pantone_raised_ink_score(b, t)
+  def self.pantone_raised_ink_score(b, t)
     b_colors = b.raised_ink.front + b.raised_ink.back
-    t_colors = t.raised_ink.front + t.raised_ink.back
+    t_colors = t["raised_ink"]["front"].to_i + t["raised_ink"]["back"].to_i
     diff = nil
     pri_score = nil
 
@@ -129,9 +142,9 @@ class BusinessCard < ActiveRecord::Base
     pri_score
   end
 
-  def pantone_dimension_score(b, t)
-    b_size = b.dimension.width + b.dimension.height
-    t_size = t.dimension.width + t.dimension.height
+  def self.pantone_dimension_score(b, t)
+    b_size = b.dimension.width.to_i + b.dimension.height.to_i
+    t_size = t["dimension"]["width"].to_i + t["dimension"]["height"].to_i
     diff = nil
     pd_score = nil
 
@@ -141,7 +154,7 @@ class BusinessCard < ActiveRecord::Base
       diff = t_size - b_size
     end
 
-    case diff.to_i
+    case diff
     when 0
       pd_score = 15
     when 1
@@ -157,10 +170,10 @@ class BusinessCard < ActiveRecord::Base
     pd_score
   end
 
-  def pantone_coating_score(b, t)
-    if b.coating.front == t.coating.front
+  def self.pantone_coating_score(b, t)
+    if b.coating.front == t["coating"]["front"]
       pc_score = 15
-    elsif b.coating.back == t.coating.back
+    elsif b.coating.back == t["coating"]["back"]
       pc_score = 15
     else
       pc_score = 0
