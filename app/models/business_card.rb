@@ -48,6 +48,7 @@ class BusinessCard < ActiveRecord::Base
     score << pantone_ink_color_score(bc, target)
     score << pantone_bleed_score(bc) if target.bleed.front == true || target.bleed.back == true
     score << pantone_raised_ink_score(bc, target) if target.raised_ink.front > 0 || target.raised_ink.back > 0
+    score << pantone_dimension_score(bc, target)
   end
 
   def generate_cmyk_offset_score(bc, target)
@@ -123,6 +124,34 @@ class BusinessCard < ActiveRecord::Base
     end
       
     pri_score
+  end
+
+  def pantone_dimension_score(b, t)
+    b_size = b.dimension.width + b.dimension.height
+    t_size = t.dimension.width + t.dimension.height
+    diff = nil
+    pd_score = nil
+
+    if b_size > t_size
+      diff = b_size - t_size
+    else
+      diff = t_size - b_size
+    end
+
+    case diff.to_i
+    when 0
+      pd_score = 15
+    when 1
+      pd_score = 10
+    when 2
+      pd_score = 5
+    when 3..9
+      pd_score = 3
+    else
+      pd_score = 0
+    end
+      
+    pd_score
   end
 
 end
