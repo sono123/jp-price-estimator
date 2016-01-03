@@ -16,10 +16,11 @@ class BusinessCard < ActiveRecord::Base
 
   def self.similar_products(target)
     same_print_method = BusinessCard.where(print_method_id: target['print_method_id'])
+    target_bc = BusinessCard.find(target['id'])
     business_card_scores = []
 
     same_print_method_arr.each do |bc|
-      business_card_scores << generate_score(bc, target)
+      business_card_scores << generate_score(bc, target_bc)
     end
 
     results = usiness_card_scores.sort
@@ -45,6 +46,7 @@ class BusinessCard < ActiveRecord::Base
   def generate_pantone_offset_score(bc, target)
     score = []
     score << pantone_ink_color_score(bc, target)
+    score << pantone_bleed_score(bc) if target.bleed.front == true || target.bleed.back == true
   end
 
   def generate_cmyk_offset_score(bc, target)
@@ -70,30 +72,28 @@ class BusinessCard < ActiveRecord::Base
 
     case diff
     when 0
-      pic_score = 10
+      pic_score = 15
     when 1
-      pic_score = 9
+      pic_score = 10
     when 2
-      pic_score = 8
-    when 3
-      pic_score = 7
-    when 4
-      pic_score = 6
-    when 5
       pic_score = 5
-    when 6
-      pic_score = 4
-    when 7
+    when 3..9
       pic_score = 3
-    when 8
-      pic_score = 2
-    when 9
-      pic_score = 1
     else
       pic_score = 0
     end
       
     pic_score
+  end
+
+  def pantone_bleed_score(b)
+    pb_score = 0
+
+    if b.bleed.front == true || b.bleed.back == true
+      pb_score = 15
+    else
+      pb_score = 0
+    end
   end
 
 end
