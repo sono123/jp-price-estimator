@@ -15,19 +15,6 @@ class MainController < ApplicationController
     @box_counts = BoxCount.all
   end
 
-  def search
-  	search = BusinessCard.search(params)
-  	result = search[0]
-  	if result
-	  	@price = result.price.to_s
-      @cost = result.cost.to_s
-	  	@id = result.id.to_s
-  	else
-      # BusinessCard.similar_products(params)
-  		render :template => 'main/new_bc'
-  	end
-  end
-
 end
 
 

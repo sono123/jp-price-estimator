@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'main/index' => 'main#index'
 
-  get '/search' => 'main#search'
+  get '/search' => 'business_cards#search'
   post '/business_cards' => 'business_cards#create'
   get '/business_cards/:id/edit' => 'business_cards#edit'
   patch '/business_cards/:id' => 'business_cards#update'

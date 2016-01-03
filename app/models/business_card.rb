@@ -14,16 +14,16 @@ class BusinessCard < ActiveRecord::Base
   end
 
 
-  def self.similar_products(target)
-    same_print_method = BusinessCard.where(print_method_id: target['print_method_id'])
-    target_bc = BusinessCard.find(target['id'])
+  def self.similar_products(target_params)
+    same_print_method = BusinessCard.where(print_method_id: target_params['print_method_id'])
+    target_bc = BusinessCard.find(target_params['id'])
     business_card_scores = []
 
     same_print_method_arr.each do |bc|
-      business_card_scores << generate_score(bc, target_bc)
+      business_card_scores << [bc.id, generate_score(bc, target_bc)]
     end
 
-    results = usiness_card_scores.sort
+    results = business_card_scores.sort_by{ |bc| bc[1] }
   end
 
 
@@ -32,15 +32,16 @@ class BusinessCard < ActiveRecord::Base
 
 
   def generate_score(bc, target)
-    if bc.print_method.print_method.downcase == "pantone offset"
-      generate_pantone_offset_score(bc, target)
-    elsif bc.print_method.print_method.downcase == "cmyk offset"
-      generate_cmyk_offset_score(bc, target)
-    elsif bc.print_method.print_method.downcase == "letterpress"
-      generate_letterpress_score(bc, target)
-    else
-      generate_digital_score(bc, target)
-    end
+    # if bc.print_method.print_method.downcase == "pantone offset"
+    #   generate_pantone_offset_score(bc, target)
+    # elsif bc.print_method.print_method.downcase == "cmyk offset"
+    #   generate_cmyk_offset_score(bc, target)
+    # elsif bc.print_method.print_method.downcase == "letterpress"
+    #   generate_letterpress_score(bc, target)
+    # else
+    #   generate_digital_score(bc, target)
+    # end
+    generate_pantone_offset_score(bc, target)
   end
 
   def generate_pantone_offset_score(bc, target)
@@ -50,6 +51,7 @@ class BusinessCard < ActiveRecord::Base
     score << pantone_raised_ink_score(bc, target) if target.raised_ink.front > 0 || target.raised_ink.back > 0
     score << pantone_dimension_score(bc, target)
     score << pantone_coating_score(bc, target) if target.coating.front != "none" || target.coating.back != "none"
+    sum = score.inject(:+)
   end
 
   def generate_cmyk_offset_score(bc, target)
@@ -162,6 +164,7 @@ class BusinessCard < ActiveRecord::Base
       pc_score = 15
     else
       pc_score = 0
+    end
   end
 
 end

@@ -24,6 +24,20 @@ class BusinessCardsController < ApplicationController
     redirect_to root_path
   end
 
+  def search
+    search = BusinessCard.search(params)
+    result = search[0]
+    if result
+      @price = result.price.to_s
+      @cost = result.cost.to_s
+      @id = result.id.to_s
+      render :template => 'main/search'
+    else
+      # @similar = BusinessCard.similar_products(params)
+      render :template => 'main/new_bc'
+    end
+  end
+
   private
 
   def business_card_params
