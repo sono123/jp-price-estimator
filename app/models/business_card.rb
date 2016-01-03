@@ -43,6 +43,8 @@ class BusinessCard < ActiveRecord::Base
   end
 
   def generate_pantone_offset_score(bc, target)
+    score = []
+    score << pantone_ink_color_score(bc, target)
   end
 
   def generate_cmyk_offset_score(bc, target)
@@ -54,4 +56,53 @@ class BusinessCard < ActiveRecord::Base
   def generate_digital_score(bc, target)
   end
 
+  def pantone_ink_color_score(b, t)
+    b_colors = b.ink_color.front + b.ink_color.back
+    t_colors = t.ink_color.front + t.ink_color.back
+    diff = nil
+    pic_score = nil
+
+    if b_colors > t_colors
+      diff = b_colors - t_colors
+    else
+      diff - t_colors - b_colors
+    end
+
+    case diff
+    when 0
+      pic_score = 10
+    when 1
+      pic_score = 9
+    when 2
+      pic_score = 8
+    when 3
+      pic_score = 7
+    when 4
+      pic_score = 6
+    when 5
+      pic_score = 5
+    when 6
+      pic_score = 4
+    when 7
+      pic_score = 3
+    when 8
+      pic_score = 2
+    when 9
+      pic_score = 1
+    else
+      pic_score = 0
+    end
+      
+    pic_score
+  end
+
 end
+
+
+
+
+
+
+
+
+
