@@ -33,8 +33,10 @@ class BusinessCardsController < ApplicationController
       @id = result.id.to_s
       render :template => 'main/search'
     else
-      @similar = BusinessCard.similar_products(params)
-      
+      similar = BusinessCard.similar_products(params)
+      @similar = similar.map {|obj| obj[0]}.to_s
+
+
       puts "*******************************"
       p @similar
       puts "*******************************"

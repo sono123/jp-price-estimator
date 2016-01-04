@@ -1,3 +1,9 @@
 $('.search-form').addClass("hide");
 $('.new-bc-form').removeClass("hide");
+$('.similar-products').replaceWith("<%= j similar_products( @similar ) %>");
+
+
 console.log("New BC Form - via new_bc.js.erb");
+
+
+

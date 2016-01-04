@@ -37,6 +37,7 @@ class BusinessCard < ActiveRecord::Base
     end
 
     results = business_card_scores.sort_by{ |bc| bc[1] }
+    results.reverse
   end
 
 

@@ -84,6 +84,30 @@ module MainHelper
 		@margin = @price.to_i - (@cost.to_i + overhead.to_i)
 		@margin.to_s
 	end
+
+	def similar_products(arr_string)
+		arr_string.slice!(0)
+		arr_string.chop
+		arr = arr_string.split(",").map(&:to_i)
+		html_string = "<div class='similar-products'><br><h3>Similar Products</h3><br><br>"
+
+		arr.each do |id|
+			bc = BusinessCard.find(id)
+			html_string << "<h5>Print Method: #{bc.print_method.print_method}</h5>"
+			html_string << "<h5>Ink Colors: #{bc.ink_color.front} / #{bc.ink_color.back}</h5>"
+			html_string << "<h5>Bleeds: #{bc.bleed.front ? 1 : 0} / #{bc.bleed.back ? 1 : 0}</h5>"
+			html_string << "<h5>Raised Inks: #{bc.raised_ink.front} / #{bc.raised_ink.back}</h5>"
+			html_string << "<h5>Dimensions: #{trim bc.dimension.width} x #{trim bc.dimension.height}</h5>"
+			html_string << "<h5>Coatings: #{bc.coating.front} / #{bc.coating.back}</h5>"
+			html_string << "<h5>Quantity: #{bc.quantity.quantity}</h5>"
+			html_string << "<h5>Box Count: #{bc.box_count.box_count}</h5>"
+			html_string << "<h5>Unit Price: $#{bc.price}</h5>"
+			html_string << "<br><br>"
+		end
+
+		html_string << "</div>"
+		html_string.html_safe
+	end
 end
 
 
