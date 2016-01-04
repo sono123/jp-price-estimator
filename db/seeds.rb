@@ -82,7 +82,30 @@ box_increments.each do |qty|
 end
 
 
+# Pantone Offset Business Cards
+# BusinessCard.create(print_method_id: => 1, 
+# 										ink_color_id: => 6, 
+# 										bleed_id: => 4, 
+# 										raised_ink_id: => 1, 
+# 										dimension_id: => 1, 
+# 										paper_type_id: => 1, 
+# 										coating_id: => 4, 
+# 										quantity_id: => 2,
+# 	                  box_count_id: => 1,
+# 										price: => 139,
+# 	                  cost: => 45)
 
+# BusinessCard.create(print_method_id: => 1, 
+# 										ink_color_id: => 7, 
+# 										bleed_id: => 4, 
+# 										raised_ink_id: => 1, 
+# 										dimension_id: => 1, 
+# 										paper_type_id: => 1, 
+# 										coating_id: => 4, 
+# 										quantity_id: => 2,
+# 	                  box_count_id: => 1,
+# 										price: => 159,
+# 	                  cost: => 65)
 
 
 

@@ -32,12 +32,13 @@ class BusinessCard < ActiveRecord::Base
 
     business_card_scores = []
 
-    same_print_method.each do |bc|
-      business_card_scores << [bc.id, self.generate_score(bc, target_bc)]
-    end
-
+    if same_print_method.count > 0
+      same_print_method.each do |bc|
+        business_card_scores << [bc.id, self.generate_score(bc, target_bc)]
+      end
     results = business_card_scores.sort_by{ |bc| bc[1] }
     results.reverse
+    end
   end
 
 

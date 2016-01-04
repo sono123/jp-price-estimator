@@ -34,11 +34,13 @@ class BusinessCardsController < ApplicationController
       render :template => 'main/search'
     else
       similar = BusinessCard.similar_products(params)
-      @similar = similar.map {|obj| obj[0]}.to_s
+      if similar
+        @similar = similar.map {|obj| obj[0]}.to_s
+      end
 
 
       puts "*******************************"
-      p @similar
+      p similar
       puts "*******************************"
 
       render :template => 'main/new_bc'
