@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151231210730) do
+ActiveRecord::Schema.define(version: 20160105045215) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20151231210730) do
     t.integer  "quantity_id"
     t.integer  "cost"
     t.integer  "box_count_id"
+    t.integer  "metal_id"
   end
 
   add_index "business_cards", ["bleed_id"], name: "index_business_cards_on_bleed_id", using: :btree
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20151231210730) do
   add_index "business_cards", ["coating_id"], name: "index_business_cards_on_coating_id", using: :btree
   add_index "business_cards", ["dimension_id"], name: "index_business_cards_on_dimension_id", using: :btree
   add_index "business_cards", ["ink_color_id"], name: "index_business_cards_on_ink_color_id", using: :btree
+  add_index "business_cards", ["metal_id"], name: "index_business_cards_on_metal_id", using: :btree
   add_index "business_cards", ["paper_type_id"], name: "index_business_cards_on_paper_type_id", using: :btree
   add_index "business_cards", ["print_method_id"], name: "index_business_cards_on_print_method_id", using: :btree
   add_index "business_cards", ["quantity_id"], name: "index_business_cards_on_quantity_id", using: :btree
@@ -72,6 +74,13 @@ ActiveRecord::Schema.define(version: 20151231210730) do
   create_table "ink_colors", force: :cascade do |t|
     t.integer  "front"
     t.integer  "back"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "metals", force: :cascade do |t|
+    t.string   "front"
+    t.string   "back"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -127,6 +136,7 @@ ActiveRecord::Schema.define(version: 20151231210730) do
   add_foreign_key "business_cards", "coatings"
   add_foreign_key "business_cards", "dimensions"
   add_foreign_key "business_cards", "ink_colors"
+  add_foreign_key "business_cards", "metals"
   add_foreign_key "business_cards", "paper_types"
   add_foreign_key "business_cards", "print_methods"
   add_foreign_key "business_cards", "quantities"
