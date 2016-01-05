@@ -13,6 +13,7 @@ class MainController < ApplicationController
   	@coatings = Coating.all
   	@quantities = Quantity.all
     @box_counts = BoxCount.all
+    @metals = Metal.all
   end
 
 end

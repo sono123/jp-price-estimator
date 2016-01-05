@@ -81,6 +81,19 @@ box_increments.each do |qty|
 	BoxCount.create(box_count: qty)
 end
 
+# Metals
+metals = [["foil stamped", "none"], 
+				  ["inline foil", "none"], 
+				  ["metallic ink", "none"]]
+
+metals.each do |arr|
+	arr.each do |front|
+		arr.each do |back|
+			Metal.create(front: front, back: back)
+		end
+	end
+end
+
 
 # Pantone Offset Business Cards
 # BusinessCard.create(print_method_id: => 1, 
