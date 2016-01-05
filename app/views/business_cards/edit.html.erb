@@ -47,6 +47,11 @@
 		<td class="col-sm-1"><%= @business_card.box_count.box_count %></td>
 	</tr>
 
+	<tr>
+		<td class="col-sm-1"><strong><span>Metal:</span></strong></td>
+		<td class="col-sm-1"><%= @business_card.metal.front %> / <%= @business_card.metal.back %></td>
+	</tr>
+
 </table>
 
 <%= form_for(@business_card, :url => "/business_cards/#{@business_card.id}", :html => {method: :patch}) do |b| %>
@@ -67,22 +72,4 @@
 
 
 
-
-
-<!-- 	
-	print_method
-
-	ink_colors
-
-	bleeds
-
-	raised_inks
-
-	dimensions
-
-	paper_types
-
-	coatings
-
-	quantities -->
 

@@ -72,6 +72,12 @@ module MainHelper
 		end
 	end
 
+	def metals
+		@metals.map do |i|
+			[i.front + " / " + i.back, i.id]
+		end
+	end
+
 	def overhead
 		if @price.to_i < 120
 			"35"
