@@ -59,6 +59,7 @@ class BusinessCardsController < ApplicationController
   																				:coating_id, 
   																				:quantity_id,
                                           :box_count_id,
+                                          :metal_id,
   																				:price,
                                           :cost)
   end

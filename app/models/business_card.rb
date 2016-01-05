@@ -8,9 +8,10 @@ class BusinessCard < ActiveRecord::Base
   belongs_to :coating
   belongs_to :quantity
   belongs_to :box_count
+  belongs_to :metal
 
   def self.search(q)
-  	result = where("print_method_id = ? AND ink_color_id = ? AND bleed_id = ? AND raised_ink_id = ? AND dimension_id = ? AND paper_type_id = ? AND coating_id = ? AND quantity_id = ? AND box_count_id = ?", q['print_method_id'], q['ink_color_id'], q['bleed_id'], q['raised_ink_id'], q['dimension_id'], q['paper_type_id'], q['coating_id'], q['quantity_id'], q['box_count_id'])
+  	result = where("print_method_id = ? AND ink_color_id = ? AND bleed_id = ? AND raised_ink_id = ? AND dimension_id = ? AND paper_type_id = ? AND coating_id = ? AND quantity_id = ? AND box_count_id = ? AND metal_id = ?", q['print_method_id'], q['ink_color_id'], q['bleed_id'], q['raised_ink_id'], q['dimension_id'], q['paper_type_id'], q['coating_id'], q['quantity_id'], q['box_count_id'], q['metal_id'])
   end
 
 
@@ -22,6 +23,11 @@ class BusinessCard < ActiveRecord::Base
     target_raised_obj = RaisedInk.find(target_params['raised_ink_id'])
     target_dimension_obj = Dimension.find(target_params['dimension_id'])
     target_coating_obj = Coating.find(target_params['coating_id'])
+    target_metal_obj = Metal.find(target_params['metal_id'])
+
+    if target_metal_obj.front != "none" || target_metal_obj.back != "none"
+      same_print_method =  BusinessCard.where(metal_id: target_params['metal_id'])
+    end
 
     target_bc = {"ink_color" => {"front" => "#{target_ink_obj.front}",   "back" => "#{target_ink_obj.back}"},
                  "bleed"     => {"front" => "#{target_bleed_obj.front}", "back" => "#{target_bleed_obj.back}"},
