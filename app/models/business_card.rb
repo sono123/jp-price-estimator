@@ -29,6 +29,13 @@ class BusinessCard < ActiveRecord::Base
       same_print_method =  BusinessCard.where(metal_id: target_params['metal_id'])
     end
 
+    if target_bleed_obj.front == false && target_bleed_obj.back == false
+      same_print_method = same_print_method.map {|obj| obj if obj.bleed.front == false && obj.bleed.back == false}.compact
+    elsif target_bleed_obj.front || target_bleed_obj.back
+      same_print_method = same_print_method.map {|obj| obj if obj.bleed.front || obj.bleed.back}.compact
+    end
+
+
     target_bc = {"ink_color" => {"front" => "#{target_ink_obj.front}",   "back" => "#{target_ink_obj.back}"},
                  "bleed"     => {"front" => "#{target_bleed_obj.front}", "back" => "#{target_bleed_obj.back}"},
                  "raised_ink"     => {"front" => "#{target_raised_obj.front}", "back" => "#{target_raised_obj.back}"},
@@ -42,8 +49,8 @@ class BusinessCard < ActiveRecord::Base
       same_print_method.each do |bc|
         business_card_scores << [bc.id, self.generate_score(bc, target_bc)]
       end
-    results = business_card_scores.sort_by{ |bc| bc[1] }
-    results.reverse
+      results = business_card_scores.sort_by{ |bc| bc[1] }
+      results.reverse
     end
   end
 
@@ -115,6 +122,9 @@ class BusinessCard < ActiveRecord::Base
   def self.pantone_bleed_score(b)
     pb_score = 0
 
+    puts "*****************************"
+    puts "REACHED_BLEED_SCORE_METHOD"
+    puts "*****************************"
     if b.bleed.front == true || b.bleed.back == true
       pb_score = 15
     else
