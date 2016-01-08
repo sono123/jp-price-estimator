@@ -1,0 +1,26 @@
+<%= form_for(@metal) do |f| %>
+  <% if @metal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@metal.errors.count, "error") %> prohibited this metal from being saved:</h2>
+
+      <ul>
+      <% @metal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= f.label :front %><br>
+    <%= f.text_field :front, class: "form-control" %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :back %><br>
+    <%= f.text_field :back, class: "form-control" %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit 'Submit', class: "btn btn-primary btn-block" %>
+  </div>
+<% end %>
