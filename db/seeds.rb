@@ -23,8 +23,8 @@ end
 
 
 # Bleeds
-[true, false].each do |front|
-	[true, false].each do |back|
+[false, true].each do |front|
+	[false, true].each do |back|
 		Bleed.create(front: front, back: back)
 	end
 end
@@ -54,18 +54,28 @@ PaperType.create(brand: "mohawk", name: "strathmore", color: "natural white", th
 
 
 # Coatings
-coating_types = [["uv coating", "none"], 
-								 ["dull matte", "none"], 
-								 ["silk laminate"], 
-								 ["suede laminate"], 
-								 ["varnish", "none"]] 
-coating_types.each do |arr|
-	arr.each do |front|
-		arr.each do |back|
-			Coating.create(front: front, back: back)
-		end
-	end
-end
+Coating.create(front: "none", back: "none")
+
+Coating.create(front: "uv coating", back: "uv coating")
+Coating.create(front: "uv coating", back: "none")
+Coating.create(front: "none", back: "uv coating")
+
+Coating.create(front: "dull matte", back: "dull matte")
+Coating.create(front: "dull matte", back: "none")
+Coating.create(front: "none", back: "dull matte")
+
+Coating.create(front: "silk laminate", back: "silk laminate")
+Coating.create(front: "silk laminate", back: "none")
+Coating.create(front: "none", back: "silk laminate")
+
+Coating.create(front: "suede laminate", back: "suede laminate")
+Coating.create(front: "suede laminate", back: "none")
+Coating.create(front: "none", back: "suede laminate")
+
+Coating.create(front: "varnish", back: "varnish")
+Coating.create(front: "varnish", back: "none")
+Coating.create(front: "none", back: "varnish")
+
 
 
 # Quantities
@@ -82,43 +92,49 @@ box_increments.each do |qty|
 end
 
 # Metals
-metals = [["foil stamped", "none"], 
-				  ["inline foil", "none"], 
-				  ["metallic ink", "none"]]
+Metal.create(front: "none", back: "none")
 
-metals.each do |arr|
-	arr.each do |front|
-		arr.each do |back|
-			Metal.create(front: front, back: back)
-		end
-	end
-end
+Metal.create(front: "foil stamped", back: "foil stamped")
+Metal.create(front: "foil stamped", back: "none")
+Metal.create(front: "none", back: "foil stamped")
+
+Metal.create(front: "inline foil", back: "inline foil")
+Metal.create(front: "inline foil", back: "none")
+Metal.create(front: "none", back: "inline foil")
+
+Metal.create(front: "metallic ink", back: "metallic ink")
+Metal.create(front: "metallic ink", back: "none")
+Metal.create(front: "none", back: "metallic ink")
 
 
-# Pantone Offset Business Cards
-# BusinessCard.create(print_method_id: => 1, 
-# 										ink_color_id: => 6, 
-# 										bleed_id: => 4, 
-# 										raised_ink_id: => 1, 
-# 										dimension_id: => 1, 
-# 										paper_type_id: => 1, 
-# 										coating_id: => 4, 
-# 										quantity_id: => 2,
-# 	                  box_count_id: => 1,
-# 										price: => 139,
-# 	                  cost: => 45)
 
-# BusinessCard.create(print_method_id: => 1, 
-# 										ink_color_id: => 7, 
-# 										bleed_id: => 4, 
-# 										raised_ink_id: => 1, 
-# 										dimension_id: => 1, 
-# 										paper_type_id: => 1, 
-# 										coating_id: => 4, 
-# 										quantity_id: => 2,
-# 	                  box_count_id: => 1,
-# 										price: => 159,
-# 	                  cost: => 65)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
