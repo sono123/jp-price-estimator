@@ -52,12 +52,6 @@
 
 	<br>
 
-	<% if flash[:error] %>
-		<p><%= flash[:error] %></p>
-	<% elsif flash[:success] %>
-		<p><%= flash[:success] %></p>
-	<% end %>
-
 	<%= submit_tag 'Search', class: "btn btn-primary btn-block" %>
 
 	<h3>Selling Price: 

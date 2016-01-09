@@ -1,4 +1,9 @@
 <div ng-controller="infoController">
+	<% if flash[:error] %>
+		<p><%= flash[:error] %></p>
+	<% elsif flash[:success] %>
+		<p><%= flash[:success] %></p>
+	<% end %>
 
 	<div class="search-form">
 			<h1 class="text-center">Search</h1>
