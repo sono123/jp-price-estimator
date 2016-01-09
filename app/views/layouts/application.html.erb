@@ -14,8 +14,13 @@
 			<div class="logo-div col-sm-12">
 				<%= link_to image_tag("logo_large.png", class: "logo center-block"), root_path %>
 			</div>
-			<p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
+			<% if notice %>
+				<h4 class="notice text-center"><%= notice %></h4>
+			<% elsif %>
+      	<h4 class="alert text-center"><%= alert %></h4>
+      <% else %>
+      <% end %>
 
 			<%= yield %>
 			
