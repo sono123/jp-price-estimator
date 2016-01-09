@@ -96,20 +96,24 @@ module MainHelper
 			arr_string.slice!(0)
 			arr_string.chop
 			arr = arr_string.split(",").map(&:to_i)
-			html_string = "<div class='similar-products'><br><h3>Similar Products</h3><br><br>"
+			html_string = "<div class='similar-products'><h3 class='text-center'>Similar Products</h3>"
 			
 			arr.each do |id|
 				bc = BusinessCard.find(id)
-				html_string << "<h5>Print Method: #{bc.print_method.print_method}</h5>"
-				html_string << "<h5>Ink Colors: #{bc.ink_color.front} / #{bc.ink_color.back}</h5>"
-				html_string << "<h5>Bleeds: #{bc.bleed.front ? 1 : 0} / #{bc.bleed.back ? 1 : 0}</h5>"
-				html_string << "<h5>Raised Inks: #{bc.raised_ink.front} / #{bc.raised_ink.back}</h5>"
-				html_string << "<h5>Dimensions: #{trim bc.dimension.width} x #{trim bc.dimension.height}</h5>"
-				html_string << "<h5>Coatings: #{bc.coating.front} / #{bc.coating.back}</h5>"
-				html_string << "<h5>Quantity: #{bc.quantity.quantity}</h5>"
-				html_string << "<h5>Box Count: #{bc.box_count.box_count}</h5>"
-				html_string << "<h5>Unit Price: $#{bc.price}</h5>"
-				html_string << "<br><br>"
+				html_string << "<div class='similar-product'>"
+				html_string << "<table class='table'>"
+				html_string << "<tr><td class='top-td'>Print Method:</td><td class='top-td'>#{bc.print_method.print_method}</td></tr>"
+				html_string << "<tr><td>Ink Colors:</td><td>#{bc.ink_color.front} / #{bc.ink_color.back}</td></tr>"
+				html_string << "<tr><td>Bleeds:</td><td>#{bc.bleed.front ? 1 : 0} / #{bc.bleed.back ? 1 : 0}</td></tr>"
+				html_string << "<tr><td>Raised Inks:</td><td>#{bc.raised_ink.front} / #{bc.raised_ink.back}</td></tr>"
+				html_string << "<tr><td>Dimensions:</td><td>#{trim bc.dimension.width} x #{trim bc.dimension.height}</td></tr>"
+				html_string << "<tr><td>Coatings:</td><td>#{bc.coating.front} / #{bc.coating.back}</td></tr>"
+				html_string << "<tr><td>Quantity:</td><td>#{bc.quantity.quantity}</td></tr>"
+				html_string << "<tr><td>Box Count:</td><td>#{bc.box_count.box_count}</td></tr>"
+				html_string << "<tr><td>Unit Cost:</td><td>$#{bc.cost}</td></tr>"
+				html_string << "<tr><td>Unit Price:</td><td>$#{bc.price}</td></tr>"
+				html_string << "</table>"
+				html_string << "</div>"
 			end
 
 			html_string << "</div>"
