@@ -7,9 +7,14 @@ class BusinessCardsController < ApplicationController
 			flash[:error] = "That item is already in the system."
 			redirect_to root_path
 		else
-	  	BusinessCard.create(business_card_params)
-	  	flash[:success] = "Price successfully added."
-	  	redirect_to root_path
+      @business_card = BusinessCard.new(business_card_params)
+      if @business_card.save
+	  	  flash[:success] = "Price successfully added."
+        redirect_to root_path
+      else
+        flash[:error] = "Business card could not be added."
+	  	  redirect_to root_path
+      end
 		end
   end
 
@@ -37,12 +42,6 @@ class BusinessCardsController < ApplicationController
       if similar
         @similar = similar.map {|obj| obj[0]}.to_s
       end
-
-
-      puts "*******************************"
-      p similar
-      puts "*******************************"
-
       render :template => 'main/new_bc'
     end
   end
