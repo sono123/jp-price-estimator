@@ -14,8 +14,13 @@
       <tr>
         <td><%= coating.front %></td>
         <td><%= coating.back %></td>
-        <td><%= link_to 'Edit', edit_coating_path(coating) %></td>
-        <td><%= link_to 'Destroy', coating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if coating.id == 1 %>
+          <td class="gray-out">Edit</td>
+          <td class="gray-out">Destroy</td>
+        <% else %>
+          <td><%= link_to 'Edit', edit_coating_path(coating) %></td>
+          <td><%= link_to 'Destroy', coating, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   post '/business_cards' => 'business_cards#create'
   get '/business_cards/:id/edit' => 'business_cards#edit'
   patch '/business_cards/:id' => 'business_cards#update'
+  get 'main/business_cards/more' => 'business_cards#more'
 
   resources :box_counts
   resources :dimensions

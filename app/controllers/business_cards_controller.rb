@@ -3,6 +3,7 @@ class BusinessCardsController < ApplicationController
   def create
 		search = BusinessCard.search(params["business_card"])
 		@result = search[0]
+    
 		if @result
 			flash[:error] = "That item is already in the system."
 			redirect_to root_path
@@ -32,6 +33,7 @@ class BusinessCardsController < ApplicationController
   def search
     search = BusinessCard.search(params)
     result = search[0]
+
     if result
       @price = result.price.to_s
       @cost = result.cost.to_s
@@ -39,11 +41,28 @@ class BusinessCardsController < ApplicationController
       render :template => 'main/search'
     else
       similar = BusinessCard.similar_products(params)
+
       if similar
-        @similar = similar.map {|obj| obj[0]}.to_s
+        @similar = similar.map {|obj| obj[0]}[0..4].to_s
+        @count = similar.count
       end
+
       render :template => 'main/new_bc'
     end
+  end
+
+  def more
+    similar = BusinessCard.similar_products(params)
+    index = params[:index].to_i - 1
+
+    if similar
+      similar_indexes = similar.map {|obj| obj[0]}
+      similar_indexes.slice!(0..index)
+      @load_more = similar_indexes[0..4].to_s
+      @count = similar_indexes.count
+    end
+
+    render :template => 'main/load_more'
   end
 
   private

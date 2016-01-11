@@ -96,11 +96,11 @@ module MainHelper
 			arr_string.slice!(0)
 			arr_string.chop
 			arr = arr_string.split(",").map(&:to_i)
-			html_string = "<div class='similar-products'><h3 class='text-center'>Similar Products</h3>"
+			html_string = "<div class='similar-products'><h3 class='text-center similar-header'>Similar Products</h3>"
 			
-			arr.each do |id|
+			arr.each_with_index do |id, index|
 				bc = BusinessCard.find(id)
-				html_string << "<div class='similar-product'>"
+				html_string << "<div class='similar-product index' data-id='#{index + 1}'>"
 				html_string << "<table class='table'>"
 				html_string << "<tr><td class='top-td'>Print Method:</td><td class='top-td'>#{bc.print_method.print_method}</td></tr>"
 				html_string << "<tr><td>Ink Colors:</td><td>#{bc.ink_color.front} / #{bc.ink_color.back}</td></tr>"
