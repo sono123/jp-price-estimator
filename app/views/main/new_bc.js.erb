@@ -4,7 +4,9 @@ $('.similar-products').replaceWith("<%= j similar_products( @similar ) %>");
 
 if ( parseInt("<%= @count %>") < 5) {
 	$('.load-more').addClass("hide");
-}
+} else {
+	$('.load-more').removeClass("hide");
+};
 
 $('.more').submit(function(){
 	var last_id = $('.index').last().attr('data-id');

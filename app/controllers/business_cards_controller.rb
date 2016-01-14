@@ -3,7 +3,7 @@ class BusinessCardsController < ApplicationController
   def create
 		search = BusinessCard.search(params["business_card"])
 		@result = search[0]
-    
+
 		if @result
 			flash[:error] = "That item is already in the system."
 			redirect_to root_path
@@ -45,6 +45,8 @@ class BusinessCardsController < ApplicationController
       if similar
         @similar = similar.map {|obj| obj[0]}[0..4].to_s
         @count = similar.count
+      else
+        @count = 0
       end
 
       render :template => 'main/new_bc'
